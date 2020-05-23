@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour {
     public GameObject cam;
     Quaternion StartingRotation;
     float Ver, Hor, RotHor, RotVer;
-    readonly float Speed = 5;
+    readonly float Speed = 2;
 
     private void Start() {
         StartingRotation = transform.rotation;
     }
 
-    void Update () {
+    void FixedUpdate () {
         RotHor += Input.GetAxis("Mouse X") * Speed;
         RotVer += Input.GetAxis("Mouse Y") * Speed;
 
