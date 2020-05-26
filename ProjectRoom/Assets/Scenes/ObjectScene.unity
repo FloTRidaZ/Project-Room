@@ -430,6 +430,14 @@ Prefab:
       propertyPath: m_Name
       value: Carcass
       objectReference: {fileID: 0}
+    - target: {fileID: 436586, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.045196455
+      objectReference: {fileID: 0}
+    - target: {fileID: 495320, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.045196455
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9558274, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
@@ -480,6 +488,9 @@ Animation:
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 0}
+  - {fileID: 7400000, guid: bb8b4d8cec97f8243ad468e54f6f889f, type: 2}
+  - {fileID: 7400000, guid: 80f8dba02a70a9f47bbb368082df2011, type: 2}
+  - {fileID: 7400000, guid: 5e9b1e67ef4667a49a1aa29944281374, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
