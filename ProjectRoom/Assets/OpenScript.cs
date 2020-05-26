@@ -4,26 +4,44 @@ using UnityEngine;
 
 public class OpenScript : MonoBehaviour {
 	Vector3 originPosition;
-	float targetZ;
-	bool opening;
-	// Use this for initialization
+	Vector3 targetPosition;
+	bool animateContinue;
+	bool open;
+
 	void Start () {
 		originPosition = transform.position;
-		opening = false;
-		targetZ = originPosition.z - 0.3f;
+		float targetZ = originPosition.z - 0.3f;
+		targetPosition = new Vector3 (originPosition.x,originPosition.y,targetZ);
+		animateContinue = false;
+		open = false;
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.E) || opening) {
-			float z = transform.position.z - 0.01f;
-			if (z <= targetZ) {
-				opening = false;
-			} else {
-				opening = true;
-			}
-			z = Mathf.Clamp (z, targetZ, originPosition.z);
-			transform.position = new Vector3 (originPosition.x, originPosition.y, z);
+
+	void FixedUpdate () {
+		if (Input.GetKeyDown (KeyCode.E)) {
+			open = !open;
+			animateContinue = true;
 		}
+		if (animateContinue) {
+			ContinueAnim ();
+		}
+	}
+		
+
+	void ContinueAnim () {
+		if (open && transform.position != targetPosition) {
+			OpenDoor ();
+		} else if (!open && transform.position != originPosition) {
+			CloseDoor ();
+		}
+
+	}
+
+	void OpenDoor () {
+		transform.position = Vector3.Slerp (transform.position, targetPosition, 0.1f);
+	}
+
+	void CloseDoor () {
+		transform.position = Vector3.Slerp (transform.position, originPosition, 0.1f);
 	}
 }
