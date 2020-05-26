@@ -28,8 +28,14 @@ public class PlayerController : MonoBehaviour {
         transform.rotation = StartingRotation * RotY;
         cam.transform.rotation = StartingRotation * transform.rotation * RotX;
 
-        Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed;
-        Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed * 2;
+            Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed * 2;
+        }
+        else {
+            Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed;
+            Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
+        }
 
         transform.Translate(new Vector3(Hor, 0, Ver));
 	}
