@@ -3,45 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenScript : MonoBehaviour {
-	Vector3 originPosition;
-	Vector3 targetPosition;
-	bool animateContinue;
-	bool open;
+	private bool open;
+	private Animation mainAnim;
+	private bool isPlaying;
 
 	void Start () {
-		originPosition = transform.position;
-		float targetZ = originPosition.z - 0.3f;
-		targetPosition = new Vector3 (originPosition.x,originPosition.y,targetZ);
-		animateContinue = false;
 		open = false;
+		mainAnim = gameObject.GetComponent<Animation> ();
 	}
 
 
-	void FixedUpdate () {
+	void Update () {
 		if (Input.GetKeyDown (KeyCode.E)) {
-			open = !open;
-			animateContinue = true;
+			DoAnim ();
 		}
-		if (animateContinue) {
-			ContinueAnim ();
+	}
+
+	void DoAnim (){
+		isPlaying = mainAnim.isPlaying;
+		if (!open && !isPlaying) {
+			mainAnim.Play ("New Animation");
+			open = true;
+		} else if (open && !isPlaying) {
+			mainAnim.Play ("New Animation 2");
+			open = false;
 		}
 	}
 		
-
-	void ContinueAnim () {
-		if (open && transform.position != targetPosition) {
-			OpenDoor ();
-		} else if (!open && transform.position != originPosition) {
-			CloseDoor ();
-		}
-
-	}
-
-	void OpenDoor () {
-		transform.position = Vector3.Slerp (transform.position, targetPosition, 0.1f);
-	}
-
-	void CloseDoor () {
-		transform.position = Vector3.Slerp (transform.position, originPosition, 0.1f);
-	}
 }
