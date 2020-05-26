@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RotationScript : MonoBehaviour {
 	Quaternion origin;
+	Quaternion rotationY;
+	Quaternion rotationX;
 	float speed = 6.5f;
 	float mouseX;
 	float mouseY;
@@ -15,8 +17,8 @@ public class RotationScript : MonoBehaviour {
 	void FixedUpdate () {
 		mouseX += Input.GetAxis ("Mouse X") * speed;
 		mouseY += Input.GetAxis ("Mouse Y") * speed;
-		Quaternion horizontal = Quaternion.AngleAxis (mouseX, Vector3.up);
-		Quaternion vertical = Quaternion.AngleAxis (mouseY, Vector3.right);
-		transform.rotation = origin * horizontal * vertical;
+		rotationY = Quaternion.AngleAxis (mouseX, Vector3.up);
+		rotationX = Quaternion.AngleAxis (mouseY, Vector3.right);
+		transform.rotation = origin * rotationX * rotationY;
 	}
 }
