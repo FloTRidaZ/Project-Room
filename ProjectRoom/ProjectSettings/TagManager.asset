@@ -6,6 +6,16 @@ TagManager:
   tags:
   - InventoryManager
   - InventoryPanel
+  - Drawer
+  - _s1
+  - _s2
+  - _s3
+  - _s4
+  - _m1
+  - _m2
+  - _m3
+  - _b1
+  - _b2
   layers:
   - Default
   - TransparentFX
