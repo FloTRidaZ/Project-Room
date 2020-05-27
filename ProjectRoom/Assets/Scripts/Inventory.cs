@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    List<Item> item;
+    [HideInInspector]
+    public List<Item> item;
     public GameObject cellContainer;
     public KeyCode showInventory;
     public KeyCode takeButton;
@@ -15,8 +16,13 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         cellContainer.SetActive(false);
-
         item = new List<Item>();
+
+        for (int i = 0; i < cellContainer.transform.childCount; i++)
+        {
+            cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
+        }
+
         for (int i = 0; i < cellContainer.transform.childCount; i++)
         {
             item.Add(new Item());
@@ -59,7 +65,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void DisplayItems()
+    public void DisplayItems()
     {
         for (int i = 0; i < item.Count; i++)
         {

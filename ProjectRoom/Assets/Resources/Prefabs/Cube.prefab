@@ -109,5 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameItem: "\u041A\u0443\u0431"
   id: 2
+  countItem: 1
   pathIcon: Icons/hammer-small
   pathPrefab: Prefabs/Cube

@@ -1420,6 +1420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84695f20a61b3614db9171e029293e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: []
   cellContainer: {fileID: 125129855}
   showInventory: 9
   takeButton: 101
@@ -1992,7 +1993,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54966455140900568, guid: c8a0126929d59514da6da61a797a38d7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c8a0126929d59514da6da61a797a38d7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1709965648
