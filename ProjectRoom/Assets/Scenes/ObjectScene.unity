@@ -424,19 +424,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 460714, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.51189727
+      value: -0.5118973
       objectReference: {fileID: 0}
     - target: {fileID: 184154, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
       propertyPath: m_Name
       value: Carcass
       objectReference: {fileID: 0}
-    - target: {fileID: 436586, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.045196455
-      objectReference: {fileID: 0}
-    - target: {fileID: 495320, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.045196455
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9558274, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
@@ -457,22 +450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28112b6bcf2102d4aa4ac0eba8977aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!111 &1443342729
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1443342726}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: df90f619708f8bc4d8dc454ed21f2e90, type: 2}
-  - {fileID: 7400000, guid: 0cad88488f23aaf45bcdb47aa6a0b660, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1718948453 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 193672, guid: 1b6f5d3a81a4c8345a49046252843fa9, type: 2}
@@ -488,9 +465,6 @@ Animation:
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 0}
-  - {fileID: 7400000, guid: bb8b4d8cec97f8243ad468e54f6f889f, type: 2}
-  - {fileID: 7400000, guid: 80f8dba02a70a9f47bbb368082df2011, type: 2}
-  - {fileID: 7400000, guid: 5e9b1e67ef4667a49a1aa29944281374, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
