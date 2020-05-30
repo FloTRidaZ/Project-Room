@@ -4,42 +4,49 @@ using UnityEngine;
 
 public class AimScript : MonoBehaviour {
 	public Camera camera;
-	private Animation mainAnim;
+	private const string ANIM_OPEN_NAME = "open";
+	private const string ANIM_CLOSE_NAME = "close";
 	private bool isPlaying;
-	private string tag;
 	private State state;
 
 	void Start () {
-		
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.E)) {
 			ObjectControl ();
 		}
 	}
-
-	void ObjectControl () {
+	/**
+	 * Метод, который запускает анимацию открытия
+	 * ящика тумбочки, если игрок находится на расстоянии
+	 * 1 метра от ящика тумбочки
+	 */ 
+	private void ObjectControl () {
 		Ray ray = this.camera.ScreenPointToRay (transform.position);
 		RaycastHit hit;
-		if (Physics.Raycast (ray, out hit)) {
+		if (Physics.Raycast (ray, out hit, 1f)) {
 			GameObject obj = hit.collider.gameObject;
-			state = obj.GetComponent<State> ();
-			this.tag = obj.tag;
-			mainAnim = obj.GetComponent<Animation> ();
-			DoAnim ();
+			DoAnim (obj.GetComponent<Animation> (), obj.GetComponent<State> (), obj.tag);
 		}
 	}
 
-	void DoAnim (){
-		isPlaying = mainAnim.isPlaying;
+	/**
+	 * Проигрывает анимацию открытия или
+	 * закрытия ящика тумбочки в зависимости
+	 * от ее состояния
+	 */
+	private void DoAnim (Animation anim, State state, string objTag){
+		if (anim == null) {
+			return;
+		}
+		isPlaying = anim.isPlaying;
 
 		if (!state.IsOpen() && !isPlaying) {
-			mainAnim.Play ("open" + tag);
+			anim.Play (ANIM_OPEN_NAME + objTag);
 			state.SetOpenState (true);
 		} else if (state.IsOpen() && !isPlaying) {
-			mainAnim.Play ("close" + tag);
+			anim.Play (ANIM_CLOSE_NAME + objTag);
 			state.SetOpenState (false);
 		}
 	}
