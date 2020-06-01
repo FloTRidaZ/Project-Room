@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotationScript : MonoBehaviour {
 	Quaternion origin;
@@ -12,6 +13,12 @@ public class RotationScript : MonoBehaviour {
 
 	void Start () {
 		origin = transform.rotation;
+	}
+
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			SceneManager.LoadScene ("MainMenu");
+		}
 	}
 
 	void FixedUpdate () {
