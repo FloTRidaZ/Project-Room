@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 135417803654622468}
   - component: {fileID: 23492793737328918}
   - component: {fileID: 114948373568683888}
-  - component: {fileID: 54966455140900568}
+  - component: {fileID: 54976193913821378}
+  - component: {fileID: 114196006661341184}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492288161975544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.09, y: 1, z: -3.79}
+  m_LocalPosition: {x: 3.534, y: 1.26, z: -5.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +86,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492288161975544}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54966455140900568
+--- !u!54 &54976193913821378
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -100,6 +101,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114196006661341184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492288161975544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0236cb7ed947c024eb9df42ad5631d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  startScale: {x: 1, y: 1, z: 1}
+  arm: {fileID: 4842499266024886, guid: 1d63bdc5292b3eb46ad7a824d062f50f, type: 2}
+  takeAnObject: 111
+  removeObject: 107
 --- !u!114 &114948373568683888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,9 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameItem: "\u0421\u0444\u0435\u0440\u0430"
   id: 3
-  countItem: 1
   pathIcon: Icons/hammer-small
   pathPrefab: Prefabs/Sphere
+  arm: {fileID: 4842499266024886, guid: 1d63bdc5292b3eb46ad7a824d062f50f, type: 2}
 --- !u!135 &135417803654622468
 SphereCollider:
   m_ObjectHideFlags: 1
