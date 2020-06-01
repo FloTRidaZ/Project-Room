@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * Класс, реализующий работу инвентаря
+ * 
+ * @author Сотников Р. 17ит17
+ */
 public class Inventory : MonoBehaviour
 {
     [HideInInspector]
@@ -34,6 +39,9 @@ public class Inventory : MonoBehaviour
         ToggleInventory();
     }
 
+    /**
+     * Метод для добавления в инвентарь объектов и автоматического удаления их со сцены
+     */
 	public void addItem(GameObject obj){
 		for (int i = 0; i < items.Count; i++)
 		{
@@ -45,8 +53,12 @@ public class Inventory : MonoBehaviour
 				break;
 			}
 		}
-	}
+    }
 
+    /**
+     * Метод для отображения инвентаря по нажатию на клавишу <code>showInventory</code>
+     * и скрытия прицела
+     */
     void ToggleInventory()
     {
         if (Input.GetKeyDown(showInventory))
@@ -56,6 +68,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /**
+     * Метод, отображающий добавленные объекты в инвентаре
+     */
     public void DisplayItems()
     {
         for (int i = 0; i < items.Count; i++)

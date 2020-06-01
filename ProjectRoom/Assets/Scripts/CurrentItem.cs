@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System;
 
+/**
+ * Класс, реализующий работу выбранного объекта в инвентаре
+ *
+ * @author Сотников Р. 17ит17
+ */
 public class CurrentItem : MonoBehaviour, IPointerClickHandler
 {
 	public static string currentPath;
@@ -20,6 +26,10 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler
         inventory = inventoryObject.GetComponent<Inventory>();
     }
 
+    /**
+     * Метод, в котором проверяется, если нажата правая кнопка мыши,
+     * то загружается сцена с вращением выбранного в инвентаре объекта
+     */
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -28,8 +38,8 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler
             // droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
             // inventory.items[index] = new Item();
             // inventory.DisplayItems();
-			currentPath = inventory.items [index].pathPrefab;
-			SceneManager.LoadScene ("Rotation");
+            currentPath = inventory.items[index].pathPrefab;
+            SceneManager.LoadScene("Rotation");
         }
     }
 }
