@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RotationScript : MonoBehaviour {
+	GameObject rotatedObj;
 	Quaternion origin;
 	Quaternion rotationY;
 	Quaternion rotationX;
@@ -11,13 +12,20 @@ public class RotationScript : MonoBehaviour {
 	float mouseX;
 	float mouseY;
 
+	void Awake () {
+		rotatedObj = Instantiate(Resources.Load<GameObject>(CurrentItem.currentPath));
+		rotatedObj.transform.parent = gameObject.transform;
+		rotatedObj.transform.position = gameObject.transform.position;
+	}
+
 	void Start () {
 		origin = transform.rotation;
 	}
 
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			SceneManager.LoadScene ("MainMenu");
+		rotatedObj.GetComponent<Rigidbody> ().Sleep ();
+		if (Input.GetMouseButtonDown(1)) {
+			SceneManager.LoadScene ("Demo");
 		}
 	}
 
