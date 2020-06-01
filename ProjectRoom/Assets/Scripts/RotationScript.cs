@@ -14,6 +14,7 @@ public class RotationScript : MonoBehaviour {
 
 	void Awake () {
 		rotatedObj = Instantiate(Resources.Load<GameObject>(CurrentItem.currentPath));
+		rotatedObj.GetComponent<Rigidbody> ().isKinematic = true;
 		rotatedObj.transform.parent = gameObject.transform;
 		rotatedObj.transform.position = gameObject.transform.position;
 	}
@@ -23,7 +24,6 @@ public class RotationScript : MonoBehaviour {
 	}
 
 	void Update () {
-		rotatedObj.GetComponent<Rigidbody> ().Sleep ();
 		if (Input.GetMouseButtonDown(1)) {
 			SceneManager.LoadScene ("Demo");
 		}
