@@ -21,9 +21,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(inventory.item[index].pathPrefab));
+            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(inventory.items[index].pathPrefab));
             droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
-            inventory.item[index] = new Item();
+            inventory.items[index] = new Item();
             inventory.DisplayItems();
         }
     }

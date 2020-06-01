@@ -16,6 +16,7 @@ TagManager:
   - _m3
   - _b1
   - _b2
+  - aim
   layers:
   - Default
   - TransparentFX

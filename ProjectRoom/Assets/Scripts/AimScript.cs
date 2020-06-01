@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class AimScript : MonoBehaviour {
 	public Camera camera;
+	Inventory inventory;
 	private const string ANIM_OPEN_NAME = "open";
 	private const string ANIM_CLOSE_NAME = "close";
 	private bool isPlaying;
 	private State state;
 
 	void Start () {
+		GameObject inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
+		inventory = inventoryObject.GetComponent<Inventory>();
 	}
 
 	void Update () {
@@ -27,7 +30,17 @@ public class AimScript : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, 1f)) {
 			GameObject obj = hit.collider.gameObject;
+			toDetermine (obj);
+		}
+	}
+
+	private void toDetermine (GameObject obj){
+		if (obj.GetComponent<Animation> ()) {
 			DoAnim (obj.GetComponent<Animation> (), obj.GetComponent<State> (), obj.tag);
+		}
+
+		if (obj.GetComponent<Item> ()) {
+			inventory.addItem (obj);
 		}
 	}
 
@@ -37,9 +50,6 @@ public class AimScript : MonoBehaviour {
 	 * от ее состояния
 	 */
 	private void DoAnim (Animation anim, State state, string objTag){
-		if (anim == null) {
-			return;
-		}
 		isPlaying = anim.isPlaying;
 
 		if (!state.IsOpen() && !isPlaying) {
