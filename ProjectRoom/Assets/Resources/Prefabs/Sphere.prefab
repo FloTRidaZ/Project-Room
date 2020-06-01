@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33172459946643468}
   - component: {fileID: 135417803654622468}
   - component: {fileID: 23492793737328918}
-  - component: {fileID: 114948373568683888}
   - component: {fileID: 54976193913821378}
+  - component: {fileID: 114948373568683888}
   - component: {fileID: 114196006661341184}
   m_Layer: 0
   m_Name: Sphere
@@ -112,7 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0236cb7ed947c024eb9df42ad5631d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   startScale: {x: 1, y: 1, z: 1}
   arm: {fileID: 4842499266024886, guid: 1d63bdc5292b3eb46ad7a824d062f50f, type: 2}
   takeAnObject: 111
@@ -128,11 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daa6f7e7ae12c34ca3dd8a5cec540c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameItem: "\u0421\u0444\u0435\u0440\u0430"
-  id: 3
-  pathIcon: Icons/hammer-small
-  pathPrefab: Prefabs/Sphere
-  arm: {fileID: 4842499266024886, guid: 1d63bdc5292b3eb46ad7a824d062f50f, type: 2}
+  itemName: "\u0421\u0444\u0435\u0440\u0430"
+  id: 2
+  pathToIcon: Icons/hammer-small
+  pathToPrefab: Prefabs/Sphere
 --- !u!135 &135417803654622468
 SphereCollider:
   m_ObjectHideFlags: 1

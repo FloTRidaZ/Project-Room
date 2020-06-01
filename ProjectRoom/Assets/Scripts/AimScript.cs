@@ -52,7 +52,7 @@ public class AimScript : MonoBehaviour {
 		}
 
 		if (obj.GetComponent<Item> ()) {
-			inventory.addItem (obj);
+			inventory.AddItemToInventory (obj);
 		}
 	}
 

@@ -9,14 +9,16 @@ using UnityEngine.UI;
  *
  * @author Сотников Р. 17ит17
  */
-public class SelectingSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HighlightingACell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Подсветка")]
     public Sprite activeCell;
+
     Sprite cell;
     Image img;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         img = GetComponent<Image>();
         cell = img.sprite;
 	}

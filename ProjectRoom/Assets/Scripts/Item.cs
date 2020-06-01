@@ -9,8 +9,11 @@ using UnityEngine;
  */
 public class Item : MonoBehaviour
 {
-    public string nameItem;
+    [Header("Описание объекта")]
+    public string itemName;
     public int id;
-    public string pathIcon;
-    public string pathPrefab;
+
+    [Header("Путь к...")]
+    public string pathToIcon;
+    public string pathToPrefab;
 }
