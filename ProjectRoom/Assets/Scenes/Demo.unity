@@ -578,8 +578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   cellContainer: {fileID: 378302831}
-  showInventory: 9
   aim: {fileID: 782390690}
+  showInventory: 9
 --- !u!222 &310894173
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -730,10 +730,10 @@ RectTransform:
   m_Father: {fileID: 803584815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -468.5, y: -132.7}
+  m_SizeDelta: {x: 550, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &395973330
 Prefab:
@@ -1405,6 +1405,36 @@ Prefab:
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}

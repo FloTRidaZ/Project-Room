@@ -38,8 +38,12 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler
             // droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
             // inventory.items[index] = new Item();
             // inventory.DisplayItems();
-            currentPath = inventory.items[index].pathToPrefab;
-            SceneManager.LoadScene("Rotation");
+            if (inventory.items[index].id != 0)
+            {
+                //inventory.cellContainer.SetActive(!inventory.cellContainer.activeSelf);
+                currentPath = inventory.items[index].pathToPrefab;
+                SceneManager.LoadScene("Rotation");
+            }
         }
     }
 }
