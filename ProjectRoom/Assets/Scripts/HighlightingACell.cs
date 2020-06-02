@@ -18,7 +18,7 @@ public class HighlightingACell : MonoBehaviour, IPointerEnterHandler, IPointerEx
     Image img;
 
     // Use this for initialization
-    void Start() {
+    void Awake () {
         img = GetComponent<Image>();
         cell = img.sprite;
 	}
