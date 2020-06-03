@@ -38,5 +38,5 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.Translate(new Vector3(Hor, 0, Ver));
-	}
+    }
 }
