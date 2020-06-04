@@ -17,9 +17,6 @@ public class Inventory : MonoBehaviour
     [Header("Контейнер ячеек")]
     public GameObject cellContainer;
 
-    [Header("Кнопка взаимодействия")]
-    public GameObject keyPanel;
-
     // Use this for initialization
     void Start()
     {

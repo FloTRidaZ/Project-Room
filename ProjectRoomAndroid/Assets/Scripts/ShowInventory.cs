@@ -20,6 +20,9 @@ public class ShowInventory : MonoBehaviour, IPointerClickHandler
 		
 	}
 
+    /**
+     * Отображение/скрытие инвентаря по клику на панель, расположенную в правом нижнем углу
+     */
     public void OnPointerClick(PointerEventData eventData)
     {
         inventory.cellContainer.SetActive(!inventory.cellContainer.activeSelf);

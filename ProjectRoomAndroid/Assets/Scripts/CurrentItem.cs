@@ -17,6 +17,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     [Header("Подсветка")]
     public Sprite activeCell;
+    public Sprite highlightedCell;
 
     [HideInInspector]
     public int index;
@@ -45,6 +46,8 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     public void OnPointerClick(PointerEventData eventData)
     {
+        HighlightACell();
+
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             // GameObject droppedObject = Instantiate(Resources.Load<GameObject>(inventory.items[index].pathToPrefab));
@@ -61,23 +64,49 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     }
 
     /**
-     * Если положение курсора совпадает с ячейкой инвентаря, то включается ее подсветка
+     * Выделение выбранной ячейки по клику на неё и, 
+     * если кликнуть по выбранной ячейке ещё раз, то выделение снимется
+     */
+    private void HighlightACell()
+    {
+        if (img.sprite == highlightedCell)
+        {
+            img.sprite = cell;
+        }
+        else
+        {
+            inventory.cellContainer.SetActive(false);
+            inventory.cellContainer.SetActive(true);
+            img.sprite = highlightedCell;
+        }
+    }
+
+    /**
+     * Если положение курсора совпадает с ячейкой инвентаря и 
+     * при этом, курсор не затрагивает выбранную ячейку, то включается ее подсветка
      */
     public void OnPointerEnter(PointerEventData eventData)
     {
-        img.sprite = activeCell;
+        if (img.sprite != highlightedCell)
+        {
+            img.sprite = activeCell;
+        }
     }
 
     /**
-     * Если положение курсора не совпадает с ячейкой инвентаря, то подсветка выключается
+     * Если положение курсора не совпадает с ячейкой инвентаря и 
+     * при этом, курсор не затрагивает выбранную ячейку, то подсветка выключается
      */
     public void OnPointerExit(PointerEventData eventData)
     {
-        img.sprite = cell;
+        if (img.sprite != highlightedCell)
+        {
+            img.sprite = cell;
+        }
     }
 
     /**
-     * После закрытия инвентаря у всех ячеек выключается подсветка
+     * После закрытия инвентаря у всех ячеек, с учётом выбранной ячейки, выключается подсветка
      */
     private void OnDisable()
     {
