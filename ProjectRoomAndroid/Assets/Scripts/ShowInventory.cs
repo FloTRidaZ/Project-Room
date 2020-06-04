@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class ShowInventory : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Прицел")]
-    public Image aim;
-
     GameObject inventoryObject;
     Inventory inventory;
 
@@ -26,6 +23,5 @@ public class ShowInventory : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         inventory.cellContainer.SetActive(!inventory.cellContainer.activeSelf);
-        aim.enabled = !aim.enabled;
     }
 }
