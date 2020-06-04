@@ -14,13 +14,13 @@ public class BoxHandler : MonoBehaviour, IPointerDownHandler {
 		tag = gameObject.tag;
 		state = GetComponent<State> ();
 	}
-	
+
 
 	void Update () {
-		
+
 	}
 
-	public void OnPointerDown (PointerEventData eventData){
+	public void OnPointerDown (PointerEventData eventData) {
 		if (eventData.pointerCurrentRaycast.distance <= 1f) {
 			animHandle ();
 		}

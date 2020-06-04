@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class ShowInventory : MonoBehaviour, IPointerClickHandler
 {
+	public GameObject touchManager;
     GameObject inventoryObject;
     Inventory inventory;
+
 
     // Use this for initialization
     void Start () {
@@ -25,6 +27,7 @@ public class ShowInventory : MonoBehaviour, IPointerClickHandler
      */
     public void OnPointerClick(PointerEventData eventData)
     {
-        inventory.cellContainer.SetActive(!inventory.cellContainer.activeSelf);
+		inventory.cellContainer.SetActive(!inventory.cellContainer.activeSelf);
+		touchManager.SetActive (!touchManager.activeSelf);
     }
 }

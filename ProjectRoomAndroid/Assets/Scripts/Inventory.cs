@@ -23,26 +23,16 @@ public class Inventory : MonoBehaviour
         cellContainer.SetActive(false);
         items = new List<Item>();
 
-        for (int i = 0; i < cellContainer.transform.childCount; i++)
-        {
-            cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
-        }
-
-        for (int i = 0; i < cellContainer.transform.childCount; i++)
-        {
-            items.Add(new Item());
-        }
-    }
-
-    // Update is called once per frame
-	void Update(){
-        
+		for (int i = 0; i < cellContainer.transform.childCount; i++) {
+			cellContainer.transform.GetChild (i).GetComponent<CurrentItem> ().index = i;
+			items.Add (new Item ());
+		}
     }
 
     /**
      * Метод для добавления в инвентарь объектов и автоматического удаления их со сцены
      */
-    public void AddItemToInventory(GameObject obj){
+    public void AddItem(GameObject obj){
 		for (int i = 0; i < items.Count; i++)
 		{
 			if (items[i].id == 0)
