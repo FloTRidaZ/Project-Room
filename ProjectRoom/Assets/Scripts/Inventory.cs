@@ -31,12 +31,8 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < cellContainer.transform.childCount; i++)
         {
-            cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
-        }
-
-        for (int i = 0; i < cellContainer.transform.childCount; i++)
-        {
             items.Add(new Item());
+            cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
         }
     }
 
