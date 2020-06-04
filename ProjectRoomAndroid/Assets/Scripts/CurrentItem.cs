@@ -26,12 +26,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     Sprite cell;
     Image img;
 
-    [Header("Подсветка")]
-    public Sprite activeCell;
-
-    Sprite cell;
-    Image img;
-
     // Use this for initialization
     void Start()
     {
@@ -70,7 +64,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     }
 
     /**
-     * После закрытия инвентаря у всех ячеек выключается подсветка
      * Выделение выбранной ячейки по клику на неё и, 
      * если кликнуть по выбранной ячейке ещё раз, то выделение снимется
      */
