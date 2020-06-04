@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 222518370767851084}
   - component: {fileID: 114848387317249496}
   - component: {fileID: 114979746287162228}
-  - component: {fileID: 114022627111002398}
   - component: {fileID: 114853544608092350}
   m_Layer: 5
   m_Name: Cell
@@ -48,20 +47,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114022627111002398
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1583488808745592}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ab9748686ee1d42904140cab3880dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeCell: {fileID: 21300000, guid: 9cc7b9947c711c14a8d7ad78e9178c1b, type: 3}
-  cell: {fileID: 0}
-  img: {fileID: 0}
 --- !u!114 &114046930867943454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,8 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2fc0c1ead67e77408be99a725a4258c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   activeCell: {fileID: 21300000, guid: 9cc7b9947c711c14a8d7ad78e9178c1b, type: 3}
+  highlightedCell: {fileID: 21300000, guid: 6cebb0476b9f81249bb0d4a1cda43514, type: 3}
+  index: 0
 --- !u!114 &114979746287162228
 MonoBehaviour:
   m_ObjectHideFlags: 1
