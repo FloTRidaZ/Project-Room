@@ -16,8 +16,15 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 {
     public static string currentPath;
 
-    private Item item;
+    [Header("Подсветка")]
+    public Sprite cell;
+    public Sprite activeCell;
+    public Sprite highlightedCell;
+    Image imgSprite;
 
+    private GameObject inventoryObject;
+    private Inventory inventory;
+    private Item item;
 
     public void AddItem(Item content)
 	{
@@ -29,9 +36,10 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void Start()
     {
-     
+        inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
+        inventory = inventoryObject.GetComponent<Inventory>();
+        imgSprite = GetComponent<Image>();
     }
-
 
     void Awake()
     {
@@ -42,7 +50,10 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      * Метод, в котором проверяется, если нажата правая кнопка мыши,
      * то загружается сцена с вращением выбранного в инвентаре объекта
      */
-    public void OnPointerClick(PointerEventData eventData){	
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        HighlightACell();
+
 		if (item == null)
 			return;
 		Buffer.prefPath = item.pathToPrefab;
@@ -56,6 +67,16 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     private void HighlightACell()
     {
+        if (imgSprite.sprite == highlightedCell)
+        {
+            imgSprite.sprite = cell;
+        }
+        else
+        {
+            inventory.inventoryPanel.SetActive(false);
+            inventory.inventoryPanel.SetActive(true);
+            imgSprite.sprite = highlightedCell;
+        }
     }
 
     /**
@@ -64,7 +85,10 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     public void OnPointerEnter(PointerEventData eventData)
     {
-       
+        if (imgSprite.sprite != highlightedCell)
+        {
+            imgSprite.sprite = activeCell;
+        }
     }
 
     /**
@@ -73,7 +97,17 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     public void OnPointerExit(PointerEventData eventData)
     {
-
+        if (imgSprite.sprite != highlightedCell)
+        {
+            imgSprite.sprite = cell;
+        }
     }
-	
+
+    /**
+     * После закрытия инвентаря у всех ячеек, с учётом выбранной ячейки, выключается подсветка
+     */
+    private void OnDisable()
+    {
+        imgSprite.sprite = cell;
+    }
 }
