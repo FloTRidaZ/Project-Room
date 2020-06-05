@@ -15,7 +15,7 @@ public class AimScript : MonoBehaviour {
 	private bool isPlaying;
 	Inventory inventory;
 
-	void Start () {
+	void Awake () {
 		GameObject inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
 		inventory = inventoryObject.GetComponent<Inventory>();
 	}

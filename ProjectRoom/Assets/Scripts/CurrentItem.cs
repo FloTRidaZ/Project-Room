@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /**
  * Класс, реализующий работу выбранного объекта в инвентаре
@@ -15,78 +16,37 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 {
     public static string currentPath;
 
-    Item content;
+    private Item item;
 
-    [Header("Подсветка")]
-    public Sprite activeCell;
-    public Sprite highlightedCell;
 
-    [HideInInspector]
-    public int index;
-    GameObject inventoryObject;
-    Inventory inventory;
-    Sprite cell;
-    Image img;
+    public void AddItem(Item content)
+	{
+		this.item = content;
+		Image img = transform.GetChild (0).GetComponent<Image> ();
+		img.sprite = Resources.Load<Sprite> (content.pathToIcon);
+		img.enabled = true;
+	}
 
-    public void AddItem1(Item content)
-    {
-        Transform cell = inventory.cellContainer.transform.GetChild(index);
-        Transform icon = cell.GetChild(0);
-        Image img = icon.GetComponent<Image>();
-        if (IsEmpty())
-        {
-            img.enabled = true;
-            img.sprite = Resources.Load<Sprite>(content.pathToIcon);
-        }
-        else
-        {
-            img.enabled = false;
-            img.sprite = null;
-        }
-    }
-
-    public bool IsEmpty()
-    {
-        return content == null;
-    }
-
-    // Use this for initialization
     void Start()
     {
-        inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
-        inventory = inventoryObject.GetComponent<Inventory>();
+     
     }
 
-    // Use this for initialization
+
     void Awake()
     {
-        img = GetComponent<Image>();
-        cell = img.sprite;
+
     }
 
     /**
      * Метод, в котором проверяется, если нажата правая кнопка мыши,
      * то загружается сцена с вращением выбранного в инвентаре объекта
      */
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        HighlightACell();
-
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            if (IsEmpty())
-            {
-                currentPath = inventory.cells[index].content.pathToPrefab;
-                SceneManager.LoadScene("Rotation");
-            }
-        }
-        if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 2)
-        {
-            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(inventory.cells[index].content.pathToPrefab));
-            droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
-            inventory.cells[index] = null;
-            /*inventory.DisplayItems()*/;
-        }
+    public void OnPointerClick(PointerEventData eventData){	
+		if (item == null)
+			return;
+		Buffer.prefPath = item.pathToPrefab;
+		SceneManager.LoadScene (2);
     }
 
     /**
@@ -96,16 +56,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     private void HighlightACell()
     {
-        if (img.sprite == highlightedCell)
-        {
-            img.sprite = cell;
-        }
-        else
-        {
-            inventory.cellContainer.SetActive(false);
-            inventory.cellContainer.SetActive(true);
-            img.sprite = highlightedCell;
-        }
     }
 
     /**
@@ -114,10 +64,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (img.sprite != highlightedCell)
-        {
-            img.sprite = activeCell;
-        }
+       
     }
 
     /**
@@ -126,17 +73,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (img.sprite != highlightedCell)
-        {
-            img.sprite = cell;
-        }
-    }
 
-    /**
-     * После закрытия инвентаря у всех ячеек, с учётом выбранной ячейки, выключается подсветка
-     */
-    private void OnDisable()
-    {
-        img.sprite = cell;
     }
+	
 }

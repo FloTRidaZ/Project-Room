@@ -11,35 +11,29 @@ using UnityEngine.UI;
  */
 public class Inventory : MonoBehaviour
 {
-    [HideInInspector]
-    //public List<Item> items;
-    public List<CurrentItem> cells;
-
-    [Header("Контейнер ячеек")]
-    public GameObject cellContainer;
+	public GameObject inventoryPanel;
+    private List<CurrentItem> cells;
+	private int counter = 0;
 
     [Header("Прицел")]
 	public Image aim;
 
-    [Header("Кнопка взаимодействия")]
-    public KeyCode showInventory;
-
     // Use this for initialization
     void Start()
     {
-        cellContainer.SetActive(false);
-        //items = new List<Item>();
-
-        //for (int i = 0; i < cellContainer.transform.childCount; i++)
-        //{
-        //    items.Add(new Item());
-        //    //cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
-        //}
+		cells = new List<CurrentItem> ();
+		inventoryPanel.SetActive(false);
+		int count = inventoryPanel.transform.childCount;
+        for (int i = 0; i < count; i++)
+        {
+			GameObject currentObj = inventoryPanel.transform.GetChild (i).gameObject;
+			cells.Add (currentObj.GetComponent<CurrentItem> ());
+        }
     }
 
     // Update is called once per frame
 	void Update(){
-        ToggleInventory();
+		ToggleInventory ();
     }
 
     /**
@@ -47,9 +41,9 @@ public class Inventory : MonoBehaviour
      */
     void ToggleInventory()
     {
-        if (Input.GetKeyDown(showInventory))
+		if (Input.GetKeyDown(KeyCode.Tab))
         {
-            cellContainer.SetActive(!cellContainer.activeSelf);
+			inventoryPanel.SetActive(!inventoryPanel.activeSelf);
             aim.enabled = !aim.enabled;
         }
     }
@@ -59,39 +53,12 @@ public class Inventory : MonoBehaviour
      */
     public void AddItem(GameObject obj)
     {
-        for (int i = 0; i < cells.Count; i++)
-        {
-            if (cells[i] == null)
-            {
-                Item itemObj = obj.GetComponent<Item>();
-                //cells[i] = obj.GetComponent<CurrentItem>();
-                cells[i].AddItem1(itemObj);
-                Destroy(obj);
-                break;
-            }
-        }
+		if (counter == cells.Count){
+			return;
+		}
+		Item content = obj.GetComponent<Item>();
+		cells [counter].AddItem (content);
+        Destroy(obj);
+		counter++;
     }
-
-    /**
-     * Метод, отображающий добавленные объекты в инвентаре
-     */
-    //public void DisplayItems()
-    //{
-    //    for (int i = 0; i < items.Count; i++)
-    //    {
-    //        Transform cell = cellContainer.transform.GetChild(i);
-    //        Transform icon = cell.GetChild(0);
-    //        Image img = icon.GetComponent<Image>();
-    //        if (items[i] == null)
-    //        {
-    //            img.enabled = true;
-    //            img.sprite = Resources.Load<Sprite>(items[i].pathToIcon);
-    //        }
-    //        else
-    //        {
-    //            img.enabled = false;
-    //            img.sprite = null;
-    //        }
-    //    }
-    //}
 }

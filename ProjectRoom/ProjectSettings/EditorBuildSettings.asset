@@ -9,5 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: af3dc4faebe1fba4ab30d7b64f66721e
   - enabled: 1
+    path: Assets/Scenes/Demo.unity
+    guid: bf969da74b38a2d41ad150542f9b66da
+  - enabled: 1
     path: Assets/Scenes/Rotation.unity
     guid: 021982f3041a64441862a70c4ceb7ae8

@@ -21,7 +21,7 @@ public class RotationScript : MonoBehaviour {
 	 * Запускается при инициализации сцены
 	 */ 
 	void Awake () {
-		rotatedObj = Instantiate(Resources.Load<GameObject>(CurrentItem.currentPath));
+		rotatedObj = Instantiate(Resources.Load<GameObject>(Buffer.prefPath));
 		rotatedObj.GetComponent<Rigidbody> ().isKinematic = true;
 		rotatedObj.transform.parent = gameObject.transform;
 		rotatedObj.transform.position = gameObject.transform.position;
