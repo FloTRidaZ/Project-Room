@@ -4,35 +4,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BoxHandler : MonoBehaviour, IPointerDownHandler {
-	private Animation anim;
-	private string tag;
+	public Camera currentCamera;
 	private bool isPlaying;
-	private State state;
 
-	void Start () {
-		anim = GetComponent<Animation> ();
-		tag = gameObject.tag;
-		state = GetComponent<State> ();
-	}
-
-
-	void Update () {
-
-	}
 
 	public void OnPointerDown (PointerEventData eventData) {
-		if (eventData.pointerCurrentRaycast.distance <= 1f) {
-			animHandle ();
+		Vector3 pos = new Vector3 (eventData.position.x, eventData.position.y);
+		Ray ray = currentCamera.ScreenPointToRay (pos);
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit, 2f)){
+			GameObject hittedObj = hit.collider.gameObject;
+			toDetermine (hittedObj);
 		}
 	}
 
-	private void animHandle (){
+	private void toDetermine (GameObject obj){
+		if (obj.GetComponent <Animation> ()) {
+			animHandle (obj.GetComponent<Animation> (), obj.GetComponent<State> (), obj.tag);
+		}
+	}
+
+	private void animHandle (Animation anim, State state, string objTag){
 		isPlaying = anim.isPlaying;
 		if (!isPlaying && !state.IsOpen ()) {
-			anim.Play ("open" + tag);
+			anim.Play ("open" + objTag);
 			state.ToOpen ();
 		} else if (!isPlaying && state.IsOpen ()) {
-			anim.Play ("close" + tag);
+			anim.Play ("close" + objTag);
 			state.ToClose ();
 		}
 	}

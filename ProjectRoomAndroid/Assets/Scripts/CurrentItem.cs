@@ -13,13 +13,11 @@ using UnityEngine.UI;
  */
 public class CurrentItem : MonoBehaviour, IPointerClickHandler
 {
-    public static string currentPath;
 
     [Header("Подсветка")]
     public Sprite activeCell;
     public Sprite highlightedCell;
 
-    [HideInInspector]
     public int index;
     GameObject inventoryObject;
     Inventory inventory;
