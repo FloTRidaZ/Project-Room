@@ -8,35 +8,27 @@ using UnityEngine.EventSystems;
  * 
  * @author Лисова Анастасия, 17ИТ17
  */
-public class TouchCamera : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
-    public Vector2 TouchDist;
-    Vector2 PointerOld;
-    int PointerId;
-    public bool Pressed;
+public class TouchCamera : MonoBehaviour, IDragHandler {
+    public GameObject player;
+    public GameObject cam;
+    private Quaternion origin;
+    private float deltaY;
+    private float deltaX;
 
-    public void OnPointerDown(PointerEventData eventData) {
-        Pressed = true;
-        PointerId = eventData.pointerId;
-        PointerOld = eventData.position;
+    void Start() {
+        cam = player.transform.GetChild(0).gameObject;
+        origin = player.transform.rotation;
     }
 
-    private void Update() {
-        if (Pressed)  {
-            if(PointerId >= 0 && PointerId < Input.touches.Length) {
-                TouchDist = Input.touches[PointerId].position - PointerOld;
-                PointerOld = Input.touches[PointerId].position;
-            }
-            else {
-                TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - PointerOld;
-                PointerOld = Input.mousePosition;
-            }
-        }
-        else {
-            TouchDist = new Vector2();
-        }
-    }
+    public void OnDrag(PointerEventData eventData) {
+        deltaY += eventData.delta.y;
+        deltaY = Mathf.Clamp(deltaY, -60, 60);
+        deltaX += eventData.delta.x;
 
-    public void OnPointerUp(PointerEventData eventData) {
-        Pressed = false;
+        Quaternion rotationY = Quaternion.AngleAxis(deltaX / 4f, Vector3.up);
+        Quaternion rotationX = Quaternion.AngleAxis(-deltaY / 4f, Vector3.right);
+
+        player.transform.rotation = origin * rotationY;
+        cam.transform.rotation = origin * player.transform.rotation * rotationX;
     }
 }

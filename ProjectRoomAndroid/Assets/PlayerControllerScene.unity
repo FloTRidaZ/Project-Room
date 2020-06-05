@@ -364,9 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33132c112394f184080e7e0fcc342f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchField: {fileID: 1006426365}
   joystick: {fileID: 834046680}
-  cam: {fileID: 276948566}
 --- !u!136 &636875056
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -668,8 +666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c85e462fd65f5c44b221fdf5320dbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TouchDist: {x: 0, y: 0}
-  Pressed: 0
+  player: {fileID: 636875054}
+  cam: {fileID: 276948566}
 --- !u!1 &1060354316
 GameObject:
   m_ObjectHideFlags: 0
