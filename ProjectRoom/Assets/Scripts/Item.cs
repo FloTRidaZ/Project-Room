@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
 {
     [Header("Описание объекта")]
     public string itemName;
-    public int id;
+    //public int id;
 
     [Header("Путь к...")]
     public string pathToIcon;

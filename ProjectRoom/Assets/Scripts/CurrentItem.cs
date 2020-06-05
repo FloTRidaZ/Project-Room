@@ -15,6 +15,8 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 {
     public static string currentPath;
 
+    Item content;
+
     [Header("Подсветка")]
     public Sprite activeCell;
     public Sprite highlightedCell;
@@ -25,6 +27,28 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     Inventory inventory;
     Sprite cell;
     Image img;
+
+    public void AddItem1(Item content)
+    {
+        Transform cell = inventory.cellContainer.transform.GetChild(index);
+        Transform icon = cell.GetChild(0);
+        Image img = icon.GetComponent<Image>();
+        if (IsEmpty())
+        {
+            img.enabled = true;
+            img.sprite = Resources.Load<Sprite>(content.pathToIcon);
+        }
+        else
+        {
+            img.enabled = false;
+            img.sprite = null;
+        }
+    }
+
+    public bool IsEmpty()
+    {
+        return content == null;
+    }
 
     // Use this for initialization
     void Start()
@@ -50,18 +74,18 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (inventory.items[index].id != 0)
+            if (IsEmpty())
             {
-                currentPath = inventory.items[index].pathToPrefab;
+                currentPath = inventory.cells[index].content.pathToPrefab;
                 SceneManager.LoadScene("Rotation");
             }
         }
         if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 2)
         {
-            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(inventory.items[index].pathToPrefab));
+            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(inventory.cells[index].content.pathToPrefab));
             droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
-            inventory.items[index] = new Item();
-            inventory.DisplayItems();
+            inventory.cells[index] = null;
+            /*inventory.DisplayItems()*/;
         }
     }
 

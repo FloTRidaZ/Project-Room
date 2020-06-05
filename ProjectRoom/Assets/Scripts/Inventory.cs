@@ -12,7 +12,8 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [HideInInspector]
-    public List<Item> items;
+    //public List<Item> items;
+    public List<CurrentItem> cells;
 
     [Header("Контейнер ячеек")]
     public GameObject cellContainer;
@@ -27,13 +28,13 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         cellContainer.SetActive(false);
-        items = new List<Item>();
+        //items = new List<Item>();
 
-        for (int i = 0; i < cellContainer.transform.childCount; i++)
-        {
-            items.Add(new Item());
-            cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
-        }
+        //for (int i = 0; i < cellContainer.transform.childCount; i++)
+        //{
+        //    items.Add(new Item());
+        //    //cellContainer.transform.GetChild(i).GetComponent<CurrentItem>().index = i;
+        //}
     }
 
     // Update is called once per frame
@@ -56,39 +57,41 @@ public class Inventory : MonoBehaviour
     /**
      * Метод для добавления в инвентарь объектов и автоматического удаления их со сцены
      */
-    public void AddItemToInventory(GameObject obj){
-		for (int i = 0; i < items.Count; i++)
-		{
-			if (items[i].id == 0)
-			{
-				items[i] = obj.GetComponent<Item> ();
-				DisplayItems();
-				Destroy(obj);
-				break;
-			}
-		}
+    public void AddItem(GameObject obj)
+    {
+        for (int i = 0; i < cells.Count; i++)
+        {
+            if (cells[i] == null)
+            {
+                Item itemObj = obj.GetComponent<Item>();
+                //cells[i] = obj.GetComponent<CurrentItem>();
+                cells[i].AddItem1(itemObj);
+                Destroy(obj);
+                break;
+            }
+        }
     }
 
     /**
      * Метод, отображающий добавленные объекты в инвентаре
      */
-    public void DisplayItems()
-    {
-        for (int i = 0; i < items.Count; i++)
-        {
-            Transform cell = cellContainer.transform.GetChild(i);
-            Transform icon = cell.GetChild(0);
-            Image img = icon.GetComponent<Image>();
-            if (items[i].id != 0)
-            {
-                img.enabled = true;
-                img.sprite = Resources.Load<Sprite>(items[i].pathToIcon);
-            }
-            else
-            {
-                img.enabled = false;
-                img.sprite = null;
-            }
-        }
-    }
+    //public void DisplayItems()
+    //{
+    //    for (int i = 0; i < items.Count; i++)
+    //    {
+    //        Transform cell = cellContainer.transform.GetChild(i);
+    //        Transform icon = cell.GetChild(0);
+    //        Image img = icon.GetComponent<Image>();
+    //        if (items[i] == null)
+    //        {
+    //            img.enabled = true;
+    //            img.sprite = Resources.Load<Sprite>(items[i].pathToIcon);
+    //        }
+    //        else
+    //        {
+    //            img.enabled = false;
+    //            img.sprite = null;
+    //        }
+    //    }
+    //}
 }
