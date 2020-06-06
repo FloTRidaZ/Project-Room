@@ -55,7 +55,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler
 		if (data == null)
 			return;
 		Buffer.pathToPrefab = data.pathToPrefab;
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene (2);
     }
 
     /**
