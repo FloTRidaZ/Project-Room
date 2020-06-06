@@ -16,7 +16,7 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	public void onBtnStartClick () {
-		SceneManager.LoadScene ("Rotation");
+		SceneManager.LoadScene (1);
 	}
 
 	public void onBtnExitClick () {

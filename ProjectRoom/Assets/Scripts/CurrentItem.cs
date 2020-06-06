@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 /**
  * Класс, реализующий работу выбранного объекта в инвентаре
@@ -39,12 +38,11 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
         inventory = inventoryObject.GetComponent<Inventory>();
-        imgSprite = GetComponent<Image>();
     }
 
     void Awake()
     {
-
+		imgSprite = GetComponent<Image>();
     }
 
     /**
