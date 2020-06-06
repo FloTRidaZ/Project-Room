@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ObjectCtrlScene.unity
-    guid: 5e73dc8a7147820468f2a20daf74abb2
+    path: Assets/Scene/Main.unity
+    guid: 1a565cc3de9868d449484a76f05e1d04
+  - enabled: 1
+    path: Assets/Scene/Rotation.unity
+    guid: 66216874cf01bc2409841303d4215217

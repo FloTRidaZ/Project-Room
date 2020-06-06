@@ -15,6 +15,13 @@ public class RotationScript : MonoBehaviour, IDragHandler  {
 	float deltaY;
 	float deltaX;
 
+	void Awake () {
+		GameObject childObj = Instantiate <GameObject> (Resources.Load<GameObject> (Buffer.pathToPrefab));
+		childObj.GetComponent<Rigidbody> ().isKinematic = true;
+		childObj.transform.SetParent (parent.transform);
+		childObj.transform.position = parent.transform.position;
+	}
+
 	void Start (){
 		origin = parent.transform.rotation;
 	}
