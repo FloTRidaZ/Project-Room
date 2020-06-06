@@ -24,11 +24,12 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     private GameObject inventoryObject;
     private Inventory inventory;
-    private Item item;
+	private DataHolder data;
+
 
     public void AddItem(Item content)
 	{
-		this.item = content;
+		data = new DataHolder (content);
 		Image img = transform.GetChild (0).GetComponent<Image> ();
 		img.sprite = Resources.Load<Sprite> (content.pathToIcon);
 		img.enabled = true;
@@ -54,9 +55,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         HighlightACell();
 
-		if (item == null)
+		if (data == null)
 			return;
-		Buffer.prefPath = item.pathToPrefab;
+		Buffer.prefPath = data.pathToPrefab;
 		SceneManager.LoadScene (2);
     }
 
@@ -110,4 +111,14 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         imgSprite.sprite = cell;
     }
+
+	public class DataHolder {
+		public string itemName, pathToPrefab, pathToIcon;
+
+		public DataHolder (Item item){
+			itemName = item.itemName;
+			pathToPrefab = item.pathToPrefab;
+			pathToIcon = item.pathToIcon;
+		}
+	}
 }
