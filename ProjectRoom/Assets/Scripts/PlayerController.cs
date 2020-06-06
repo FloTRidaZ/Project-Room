@@ -69,27 +69,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void FixedUpdate() {
-        RotHor += Input.GetAxis("Mouse X") * Speed;
-        RotVer += Input.GetAxis("Mouse Y") * Speed;
-
-        RotVer = Mathf.Clamp(RotVer, -60, 60);
-
-        Quaternion RotY = Quaternion.AngleAxis(RotHor, Vector3.up);
-        Quaternion RotX = Quaternion.AngleAxis(-RotVer, Vector3.right);
-
-        transform.rotation = StartingRotation * RotY;
-        cam.transform.rotation = StartingRotation * transform.rotation * RotX;
-
-        if (Input.GetKey(KeyCode.LeftShift)) {
-            Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed * 2;
-            Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed * 2;
-        }
-        else {
-            Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed;
-            Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
-        }
-
-        transform.Translate(new Vector3(Hor, 0, Ver));
+        PlayerMove();
+        CameraMove();
 
         if (Input.GetKey(KeyCode.F5)) {
             Save();
@@ -98,5 +79,29 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.F9)) {
             Load();
         }
+    }
+
+    public void PlayerMove() {
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed * 2;
+            Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed * 2;
+        }
+        else {
+            Ver = Input.GetAxis("Vertical") * Time.deltaTime * Speed;
+            Hor = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
+        }
+        transform.Translate(new Vector3(Hor, 0, Ver));
+    }
+
+    public void CameraMove() {
+        RotHor += Input.GetAxis("Mouse X") * Speed;
+        RotVer += Input.GetAxis("Mouse Y") * Speed;
+        RotVer = Mathf.Clamp(RotVer, -60, 60);
+
+        Quaternion RotY = Quaternion.AngleAxis(RotHor, Vector3.up);
+        Quaternion RotX = Quaternion.AngleAxis(-RotVer, Vector3.right);
+
+        transform.rotation = StartingRotation * RotY;
+        cam.transform.rotation = StartingRotation * transform.rotation * RotX;
     }
 }
