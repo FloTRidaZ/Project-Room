@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
         FileStream fs = new FileStream(savePath, FileMode.Create);
 
         manager = new PlayerSaveManager();
-        manager.Save(gameObject, cam);
+        manager.Save(gameObject);
         bf.Serialize(fs, manager);
         fs.Close();
     }
@@ -51,11 +51,6 @@ public class PlayerController : MonoBehaviour {
         float quatZ = manager.saveData.Rotation.z;
         float quatW = manager.saveData.Rotation.w;
 
-        float camX = manager.saveData.camera.x;
-        float camY = manager.saveData.camera.y;
-        float camZ = manager.saveData.camera.z;
-        float camW = manager.saveData.camera.w;
-
         float posX = manager.saveData.position.x;
         float posY = manager.saveData.position.y;
         float posZ = manager.saveData.position.z;
@@ -64,21 +59,13 @@ public class PlayerController : MonoBehaviour {
         float dirY = manager.saveData.direction.y;
         float dirZ = manager.saveData.direction.z;
 
-        float dirCamX = manager.saveData.directionCam.x;
-        float dirCamY = manager.saveData.directionCam.y;
-        float dirCamZ = manager.saveData.directionCam.z;
-
         Quaternion Rot = new Quaternion(quatX, quatY, quatZ, quatW);
-        Quaternion Cam = new Quaternion(camX, camY, camZ, camW);
         Vector3 position = new Vector3(posX, posY, posZ);
         Vector3 forward = new Vector3(dirX, dirY, dirZ);
-        Vector3 forwardCam = new Vector3(dirCamX, dirCamY, dirCamZ);
 
         transform.rotation = Rot;
-        cam.transform.rotation = Cam;
         transform.position = position;
         transform.forward = forward;
-        cam.transform.forward = forwardCam;
     }
 
     public void FixedUpdate() {

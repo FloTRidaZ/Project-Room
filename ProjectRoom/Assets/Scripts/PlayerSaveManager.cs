@@ -37,24 +37,19 @@ public class PlayerSaveManager {
 
     [System.Serializable]
     public struct SaveData {
-        public Quat Rotation, camera;
-        public Vec3 position, direction, directionCam;
+        public Quat Rotation;
+        public Vec3 position, direction;
 
-        public SaveData(Quat Rot, Quat cam, Vec3 pos, Vec3 dir, Vec3 dirCam) {
+        public SaveData(Quat Rot, Vec3 pos, Vec3 dir) {
             Rotation = Rot;
-            camera = cam;
             position = pos;
             direction = dir;
-            directionCam = dirCam;
         }
     }
 
-    public void Save(GameObject obj, GameObject cam) {
+    public void Save(GameObject obj) {
         Quaternion Rot = obj.transform.rotation;
         Quat Rotation = new Quat(Rot.x, Rot.y, Rot.z, Rot.w);
-
-        Quaternion Cam = cam.transform.rotation;
-        Quat camera = new Quat(Cam.x, Cam.y, Cam.z, Cam.w);
 
         Vector3 localPos = obj.transform.position;
         Vec3 pos = new Vec3(localPos.x, localPos.y, localPos.z);
@@ -62,10 +57,7 @@ public class PlayerSaveManager {
         Vector3 forward = obj.transform.forward;
         Vec3 dir = new Vec3(forward.x, forward.y, forward.z);
 
-        Vector3 forwardCam = cam.transform.forward;
-        Vec3 dirCam = new Vec3(forwardCam.x, forwardCam.y, forwardCam.z);
-
-        saveData = new SaveData(Rotation, camera, pos, dir, dirCam);
+        saveData = new SaveData(Rotation, pos, dir);
     }
 }
 

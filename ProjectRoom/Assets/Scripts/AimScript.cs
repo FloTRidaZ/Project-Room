@@ -11,7 +11,7 @@ using UnityEngine;
 public class AimScript : MonoBehaviour {
 	private const string ANIM_OPEN_NAME = "open";
 	private const string ANIM_CLOSE_NAME = "close";
-	public Camera camera;
+	public Camera cam;
 	private bool isPlaying;
 	Inventory inventory;
 
@@ -31,7 +31,7 @@ public class AimScript : MonoBehaviour {
 	 * вызвана функция для определения и выполнения действия над ним.
 	 */ 
 	private void ObjectControl () {
-		Ray ray = this.camera.ScreenPointToRay (transform.position);
+		Ray ray = this.cam.ScreenPointToRay (transform.position);
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, 1f)) {
 			GameObject obj = hit.collider.gameObject;
