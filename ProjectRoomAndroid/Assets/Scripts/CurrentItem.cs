@@ -13,27 +13,35 @@ using UnityEngine.UI;
  */
 public class CurrentItem : MonoBehaviour, IPointerClickHandler
 {
+    public static string currentPath;
 
     [Header("Подсветка")]
-    public Sprite activeCell;
+    public Sprite cell;
     public Sprite highlightedCell;
+    Image imgSprite;
 
-    public int index;
-    GameObject inventoryObject;
-    Inventory inventory;
-    Sprite cell;
-    Image img;
+    private GameObject inventoryObject;
+    private Inventory inventory;
+	private DataHolder data;
+
+
+    public void AddItem(Item content)
+	{
+		data = new DataHolder (content);
+		Image img = transform.GetChild (0).GetComponent<Image> ();
+		img.sprite = Resources.Load<Sprite> (content.pathToIcon);
+		img.enabled = true;
+	}
 
     void Start()
     {
         inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
         inventory = inventoryObject.GetComponent<Inventory>();
     }
-		
+
     void Awake()
     {
-        img = GetComponent<Image>();
-        cell = img.sprite;
+		imgSprite = GetComponent<Image>();
     }
 
     /**
@@ -43,34 +51,46 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         HighlightACell();
-            //if (inventory.items[index].id != 0)
-            //{
-              //  currentPath = inventory.items[index].pathToPrefab;
-                //SceneManager.LoadScene("Rotation");
-            //}
+
+		if (data == null)
+			return;
+		Buffer.pathToPrefab = data.pathToPrefab;
+		SceneManager.LoadScene (1);
     }
 
     /**
+     * После закрытия инвентаря у всех ячеек выключается подсветка
      * Выделение выбранной ячейки по клику на неё и, 
      * если кликнуть по выбранной ячейке ещё раз, то выделение снимется
      */
     private void HighlightACell()
     {
-        if (img.sprite == highlightedCell)
+        if (imgSprite.sprite == highlightedCell)
         {
-            img.sprite = cell;
+            imgSprite.sprite = cell;
         }
         else
         {
-            img.sprite = highlightedCell;
+            inventory.inventoryPanel.SetActive(false);
+            inventory.inventoryPanel.SetActive(true);
+            imgSprite.sprite = highlightedCell;
         }
     }
-
     /**
      * После закрытия инвентаря у всех ячеек, с учётом выбранной ячейки, выключается подсветка
      */
-    void OnDisable()
+    private void OnDisable()
     {
-        img.sprite = cell;
+        imgSprite.sprite = cell;
     }
+
+	public class DataHolder {
+		public string itemName, pathToPrefab, pathToIcon;
+
+		public DataHolder (Item item){
+			itemName = item.itemName;
+			pathToPrefab = item.pathToPrefab;
+			pathToIcon = item.pathToIcon;
+		}
+	}
 }
