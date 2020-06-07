@@ -20,14 +20,8 @@ public class Inventory : MonoBehaviour
     [Header("Прицел")]
     public Image aim;
 
-    //string savePath;
-    //InventorySaveManager manager;
-
-    // Use this for initialization
     void Start()
     {
-        //savePath = Application.persistentDataPath + "/save" + name + ".gamesave";
-
         cells = new List<CurrentItem>();
         inventoryPanel.SetActive(false);
         int count = inventoryPanel.transform.childCount;
@@ -42,16 +36,12 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         ToggleInventory();
-
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    Save();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.N))
-        //{
-        //    Load();
-        //}
+		if (Input.GetKeyDown (KeyCode.F5)){
+			Save();
+		}
+		if (Input.GetKeyDown (KeyCode.F9)){
+			Load();
+		}
     }
 
     /**
@@ -81,52 +71,15 @@ public class Inventory : MonoBehaviour
         counter++;
     }
 
-    //private void Save()
-    //{
-    //    BinaryFormatter bf = new BinaryFormatter();
-    //    FileStream fs = new FileStream(savePath, FileMode.Create);
+	private void Save (){
+		foreach (CurrentItem cell in cells) {
+			cell.Save ();
+		}
+	}
 
-    //    manager = new InventorySaveManager();
-    //    manager.Save(gameObject);
-    //    bf.Serialize(fs, manager);
-    //    fs.Close();
-    //    Debug.Log("Сохранено1");
-    //}
-
-    //private void Load()
-    //{
-    //    if (!File.Exists(savePath))
-    //    {
-    //        return;
-    //    }
-
-    //    BinaryFormatter bf = new BinaryFormatter();
-    //    FileStream fs = new FileStream(savePath, FileMode.Open);
-    //    manager = (InventorySaveManager)bf.Deserialize(fs);
-    //    fs.Close();
-    //    Debug.Log("Подготовка1");
-
-    //    RestoreData();
-    //}
-
-    //private void RestoreData()
-    //{
-    //    float posX = manager.saveData.pos.x;
-    //    float posY = manager.saveData.pos.y;
-    //    float posZ = manager.saveData.pos.z;
-
-    //    float dirX = manager.saveData.dir.x;
-    //    float dirY = manager.saveData.dir.y;
-    //    float dirZ = manager.saveData.dir.z;
-
-    //    Vector3 position = new Vector3(posX, posY, posZ);
-    //    Vector3 forward = new Vector3(dirX, dirY, dirZ);
-
-    //    Data
-    //    //cells[counter] = manager.saveData.
-
-    //    transform.localPosition = position;
-    //    transform.forward = forward;
-    //    Debug.Log("Загружено1");
-    //}
+	private void Load (){
+		foreach (CurrentItem cell in cells) {
+			cell.Load ();
+		}
+	}
 }

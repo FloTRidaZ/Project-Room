@@ -40,7 +40,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void Start()
     {
-        //savePath = Application.persistentDataPath + "/save" + ".gamesave";
         inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
         inventory = inventoryObject.GetComponent<Inventory>();
     }
@@ -48,21 +47,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     void Awake()
     {
 		imgSprite = GetComponent<Image>();
-        savePath = Application.persistentDataPath + "/save" + name + ".gamesave";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Save();
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Load();
-        }
+		savePath = Application.persistentDataPath + "/save" + name + ".gamesave";
     }
 
     /**
@@ -149,21 +134,26 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 			pathToPrefab = item.pathToPrefab;
 			pathToIcon = item.pathToIcon;
 		}
+
+		public DataHolder (string itemName, string pathToPrefab, string pathToIcon){
+			this.itemName = itemName;
+			this.pathToPrefab = pathToPrefab;
+			this.pathToIcon = pathToIcon;
+		}
     }
 
-    private void Save()
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream fs = new FileStream(savePath, FileMode.Create);
-
+    public void Save()
+	{
         manager = new InventorySaveManager();
-        manager.Save(gameObject);
+		manager.Save (data);
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream fs = new FileStream(savePath, FileMode.Create);
         bf.Serialize(fs, manager);
         fs.Close();
-        Debug.Log("Сохранено1");
-        }
 
-    private void Load()
+	}
+
+    public void Load()
     {
         if (!File.Exists(savePath))
         {
@@ -172,41 +162,26 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = new FileStream(savePath, FileMode.Open);
-        manager = (InventorySaveManager)bf.Deserialize(fs);
+        manager = (InventorySaveManager) bf.Deserialize(fs);
         fs.Close();
-        Debug.Log("Подготовка1");
-
-        RestoreData();
+		if (!manager.isEmpty) {
+			RestoreData ();
+		} else {
+			ClearData ();
+		}
     }
 
     private void RestoreData()
     {
-        float posX = manager.saveData.pos.x;
-        float posY = manager.saveData.pos.y;
-        float posZ = manager.saveData.pos.z;
-
-        float dirX = manager.saveData.dir.x;
-        float dirY = manager.saveData.dir.y;
-        float dirZ = manager.saveData.dir.z;
-
-        Vector3 position = new Vector3(posX, posY, posZ);
-        Vector3 forward = new Vector3(dirX, dirY, dirZ);
-
-        string itemName = manager.saveData.itemCell.itemName;
-        string pathToIcon = manager.saveData.itemCell.pathToIcon;
-        string pathToPrefab = manager.saveData.itemCell.pathToPrefab;
-
-        Item item = new Item
-        {
-            itemName = itemName,
-            pathToIcon = pathToIcon,
-            pathToPrefab = pathToPrefab
-        };
-        DataHolder dataHolder = new DataHolder(item);
-        this.data = dataHolder;
-
-        transform.localPosition = position;
-        transform.forward = forward;
-        Debug.Log("Загружено1");
+		data = new DataHolder (manager.saveData.itemName, manager.saveData.pathToPrefab, manager.saveData.pathToIcon);
+		Image img = transform.GetChild (0).GetComponent<Image>();
+		img.sprite = Resources.Load<Sprite> (data.pathToIcon);
+		img.enabled = true;
     }
+
+	private void ClearData (){
+		data = null;
+		Image img = transform.GetChild (0).GetComponent<Image>();
+		img.enabled = false;
+	}
 }
