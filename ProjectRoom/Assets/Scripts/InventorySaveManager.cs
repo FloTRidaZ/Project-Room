@@ -13,7 +13,7 @@ public class InventorySaveManager
     {
         public string itemName, pathToIcon, pathToPrefab;
 
-		public SaveData (CurrentItem.DataHolder data)
+		public SaveData(CurrentItem.DataHolder data)
         {
 			this.itemName = data.itemName;
 			this.pathToIcon = data.pathToIcon;
@@ -21,13 +21,13 @@ public class InventorySaveManager
         }
     }
 
-	public void Save (CurrentItem.DataHolder data){
+	public void Save(CurrentItem.DataHolder data)
+    {
 		if (data == null) {
 			isEmpty = true;
 			return;
 		}
-		saveData = new SaveData (data);
+		saveData = new SaveData(data);
 		isEmpty = false;
 	}
-
 }

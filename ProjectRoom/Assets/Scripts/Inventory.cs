@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 
 /**
  * Класс, реализующий работу инвентаря
@@ -26,27 +24,25 @@ public class Inventory : MonoBehaviour
     [HideInInspector]
     public GameObject oldObject;
     [HideInInspector]
-    public string oldPath;
+    public string oldPathToPrefab;
     [HideInInspector]
     public bool inHand;
 
     void Start()
     {
         oldObject = null;
-        oldPath = null;
+        oldPathToPrefab = null;
         inHand = false;
 
-        cells = new List<CurrentItem>();
         inventoryPanel.SetActive(false);
-        int count = inventoryPanel.transform.childCount;
-        for (int i = 0; i < count; i++)
+        cells = new List<CurrentItem>();
+        for (int i = 0; i < inventoryPanel.transform.childCount; i++)
         {
             GameObject currentObj = inventoryPanel.transform.GetChild(i).gameObject;
             cells.Add(currentObj.GetComponent<CurrentItem>());
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         ToggleInventory();
@@ -59,7 +55,7 @@ public class Inventory : MonoBehaviour
     }
 
     /**
-     * Метод для отображения инвентаря и скрытия прицела по нажатию на клавишу <code>showInventory</code>
+     * Метод для отображения инвентаря и скрытия прицела по нажатию на клавишу Tab
      */
     void ToggleInventory()
     {
@@ -76,22 +72,29 @@ public class Inventory : MonoBehaviour
     public void AddItem(GameObject obj)
     {
         if (counter == cells.Count)
-        {
             return;
-        }
+
         Item content = obj.GetComponent<Item>();
         cells[counter].AddItem(content);
         Destroy(obj);
         counter++;
     }
 
-    private void Save (){
+    /**
+     * Метод для сохранения данных о состоянии инвентаря
+     */
+    private void Save()
+    {
 		foreach (CurrentItem cell in cells) {
 			cell.Save ();
 		}
 	}
 
-	private void Load (){
+    /**
+     * Метод для загрузки сохраненных данных о состоянии инвентаря
+     */
+    private void Load()
+    {
 		foreach (CurrentItem cell in cells) {
 			cell.Load ();
 		}

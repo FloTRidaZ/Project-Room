@@ -29,14 +29,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     string savePath;
     InventorySaveManager manager;
 
-    public void AddItem(Item content)
-	{
-		data = new DataHolder(content);
-        Image img = transform.GetChild(0).GetComponent<Image>();
-        img.sprite = Resources.Load<Sprite>(content.pathToIcon);
-		img.enabled = true;
-    }
-
     void Start()
     {
         inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
@@ -49,10 +41,18 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		savePath = Application.persistentDataPath + "/save" + name + ".gamesave";
     }
 
+    public void AddItem(Item content)
+    {
+        data = new DataHolder(content);
+        Image img = transform.GetChild(0).GetComponent<Image>();
+        img.sprite = Resources.Load<Sprite>(content.pathToIcon);
+        img.enabled = true;
+    }
+
     /**
      * Метод, в котором осуществляется выделение выбранной ячейки инвентаря, а также проверяется,
      * если нажата левая кнопка мыши, то выбранный предмет кладётся в руку,
-     * если нажата правая кнопка мыши, то загружается сцена с вращением выбранного объекта, 
+     * если нажата правая кнопка мыши, то загружается сцена с вращением выбранного объекта
      */
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -80,7 +80,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     private void TakeInHands()
     {
-        if (!inventory.inHand || inventory.oldPath != data.pathToPrefab)
+        if (!inventory.inHand || inventory.oldPathToPrefab != data.pathToPrefab)
         {
             Destroy(inventory.oldObject);
             GameObject obj = Instantiate(Resources.Load<GameObject>(data.pathToPrefab));
@@ -90,7 +90,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             obj.GetComponent<Rigidbody>().isKinematic = true;
             obj.GetComponent<Collider>().enabled = false;
             inventory.oldObject = obj;
-            inventory.oldPath = data.pathToPrefab;
+            inventory.oldPathToPrefab = data.pathToPrefab;
             inventory.inHand = true;
         }
         else
@@ -110,7 +110,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     }
 
     /**
-     * После закрытия инвентаря у всех ячеек выключается подсветка
      * Выделение выбранной ячейки по клику на неё и, 
      * если кликнуть по выбранной ячейке ещё раз, то выделение снимется
      */
@@ -160,7 +159,8 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         imgSprite.sprite = cell;
     }
 
-	public class DataHolder {
+	public class DataHolder
+    {
 		public string itemName, pathToPrefab, pathToIcon;
 
 		public DataHolder (Item item){
@@ -176,6 +176,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		}
     }
 
+    /**
+     * Метод для сохранения данных о состоянии инвентаря
+     */
     public void Save()
 	{
         manager = new InventorySaveManager();
@@ -187,12 +190,13 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
 	}
 
+    /**
+     * Метод для загрузки сохраненных данных о состоянии инвентаря
+     */
     public void Load()
     {
         if (!File.Exists(savePath))
-        {
             return;
-        }
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = new FileStream(savePath, FileMode.Open);
@@ -205,6 +209,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		}
     }
 
+    /**
+     * Восстановление сохраненных данных о состоянии инвентаря
+     */
     private void RestoreData()
     {
 		data = new DataHolder (manager.saveData.itemName, manager.saveData.pathToPrefab, manager.saveData.pathToIcon);
@@ -213,7 +220,11 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		img.enabled = true;
     }
 
-	private void ClearData (){
+    /**
+     * Очистка данных, если на момент сохранения предметов в инвентаре не было
+     */
+	private void ClearData ()
+    {
 		data = null;
 		Image img = transform.GetChild (0).GetComponent<Image>();
 		img.enabled = false;
