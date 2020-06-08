@@ -10,11 +10,11 @@ using System.Runtime.Serialization.Formatters.Binary;
  */
 public class PlayerController : MonoBehaviour {
     public GameObject cam;
-    Quaternion StartingRotation;
-    float Ver, Hor, RotHor, RotVer;
-    readonly float Speed = 2;
-    string savePath;
-    PlayerSaveManager manager;
+    private Quaternion StartingRotation;
+    private float Ver, Hor, RotHor, RotVer;
+    private readonly float Speed = 2;
+    private string savePath;
+    private PlayerSaveManager manager;
 
     private void Start() {
         StartingRotation = transform.rotation;
