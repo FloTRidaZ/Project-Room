@@ -2,15 +2,14 @@
 
 /**
 * Класс для управления
-* игроком и камерой
-* по осям X и Y
+* игроком по осям X и Y
 *
 * @author Лисова Анастасия, 17ИТ17
 */
 public class Player : MonoBehaviour {
 	public Joystick joystick;
-	float Hor, Ver;
-	readonly float Speed = 2;
+	private float Hor, Ver;
+	private readonly float Speed = 2;
 
 	void FixedUpdate () {
 		Hor = joystick.Horizontal() * Time.deltaTime * Speed;

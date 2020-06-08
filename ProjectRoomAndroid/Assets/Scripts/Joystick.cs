@@ -9,9 +9,9 @@ using UnityEngine.UI;
  * @author Лисова Анастасия, 17ИТ17
  */
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler {
-    Image joystickBig;
-    Image joystickSmall;
-    Vector2 inputVector;
+    private Image joystickBig;
+    private Image joystickSmall;
+    private Vector2 inputVector;
 
     void Start() {
         joystickBig = GetComponent<Image>();
