@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+/**
+ * Класс, являющийся мостом между игроком
+ * и возможностью взаимодействия с камерой
+ * и объектами на сцене
+ * 
+ * @author KSO, Анастасия Лисова 17ИТ17
+ */ 
 public class TouchHandler : MonoBehaviour, IPointerDownHandler,  IDragHandler{
 	public GameObject player;
 	public Camera cam;
@@ -38,16 +44,32 @@ public class TouchHandler : MonoBehaviour, IPointerDownHandler,  IDragHandler{
 		cam.transform.rotation = origin * player.transform.rotation * rotationX;
 	}
 
+	/**
+	 * Определяет выполнимое действие над
+	 * объектом в зависимости от имеющихся у него
+	 * компонентов и запускает определенные функции
+	 * для их выполнения
+	 * 
+	 * @param obj объект, размещенный на сцене
+	 */
 	private void toDetermine (GameObject obj){
 		if (obj.GetComponent <Animation> ()) {
-			animHandle (obj.GetComponent<Animation> (), obj.GetComponent<State> (), obj.tag);
+			AnimHandle (obj.GetComponent<Animation> (), obj.GetComponent<State> (), obj.tag);
 		}
 		if (obj.GetComponent<Item> ()) {
 			inventory.AddItem (obj);
 		}
 	}
 
-	private void animHandle (Animation anim, State state, string objTag){
+	/**
+	 * Проигрывает анимацию целевого объекта в зависимости от
+	 * его состояния
+	 * 
+	 * @param anim - компонент анимация текущего объекта
+	 * @param state - компонент состояния текущего объекта
+	 * @param objTag - тег текущего объекта
+	 */
+	private void AnimHandle (Animation anim, State state, string objTag){
 		isPlaying = anim.isPlaying;
 		if (!isPlaying && !state.IsOpen ()) {
 			anim.Play ("open" + objTag);
