@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 /**
  * Класс, реализующий работу выбранного объекта в инвентаре
@@ -23,16 +25,18 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     private GameObject inventoryObject;
     private Inventory inventory;
-	private DataHolder data;
+	public DataHolder data;
 
+    string savePath;
+    InventorySaveManager manager;
 
     public void AddItem(Item content)
 	{
-		data = new DataHolder (content);
-		Image img = transform.GetChild (0).GetComponent<Image> ();
-		img.sprite = Resources.Load<Sprite> (content.pathToIcon);
+		data = new DataHolder(content);
+        Image img = transform.GetChild (0).GetComponent<Image>();
+        img.sprite = Resources.Load<Sprite> (content.pathToIcon);
 		img.enabled = true;
-	}
+    }
 
     void Start()
     {
@@ -43,6 +47,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     void Awake()
     {
 		imgSprite = GetComponent<Image>();
+		savePath = Application.persistentDataPath + "/save" + name + ".gamesave";
     }
 
     /**
@@ -53,10 +58,21 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         HighlightACell();
 
-		if (data == null)
-			return;
-		Buffer.prefPath = data.pathToPrefab;
-		SceneManager.LoadScene (2);
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(data.pathToPrefab));
+            droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
+            Image img = transform.GetChild(0).GetComponent<Image>();
+            img.enabled = false;
+        }
+        else
+        {
+
+            if (data == null)
+                return;
+            Buffer.prefPath = data.pathToPrefab;
+            SceneManager.LoadScene(2);
+        }
     }
 
     /**
@@ -118,5 +134,54 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 			pathToPrefab = item.pathToPrefab;
 			pathToIcon = item.pathToIcon;
 		}
+
+		public DataHolder (string itemName, string pathToPrefab, string pathToIcon){
+			this.itemName = itemName;
+			this.pathToPrefab = pathToPrefab;
+			this.pathToIcon = pathToIcon;
+		}
+    }
+
+    public void Save()
+	{
+        manager = new InventorySaveManager();
+		manager.Save (data);
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream fs = new FileStream(savePath, FileMode.Create);
+        bf.Serialize(fs, manager);
+        fs.Close();
+
+	}
+
+    public void Load()
+    {
+        if (!File.Exists(savePath))
+        {
+            return;
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = new FileStream(savePath, FileMode.Open);
+        manager = (InventorySaveManager) bf.Deserialize(fs);
+        fs.Close();
+		if (!manager.isEmpty) {
+			RestoreData ();
+		} else {
+			ClearData ();
+		}
+    }
+
+    private void RestoreData()
+    {
+		data = new DataHolder (manager.saveData.itemName, manager.saveData.pathToPrefab, manager.saveData.pathToIcon);
+		Image img = transform.GetChild (0).GetComponent<Image>();
+		img.sprite = Resources.Load<Sprite> (data.pathToIcon);
+		img.enabled = true;
+    }
+
+	private void ClearData (){
+		data = null;
+		Image img = transform.GetChild (0).GetComponent<Image>();
+		img.enabled = false;
 	}
 }

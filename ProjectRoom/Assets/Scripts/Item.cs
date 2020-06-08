@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 /**
  * Класс, определяющий уникальные свойства каждого объекта
@@ -11,7 +13,6 @@ public class Item : MonoBehaviour
 {
     [Header("Описание объекта")]
     public string itemName;
-    //public int id;
 
     [Header("Путь к...")]
     public string pathToIcon;
