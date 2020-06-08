@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using System;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -33,8 +32,8 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void AddItem(Item content)
 	{
 		data = new DataHolder(content);
-        Image img = transform.GetChild (0).GetComponent<Image>();
-        img.sprite = Resources.Load<Sprite> (content.pathToIcon);
+        Image img = transform.GetChild(0).GetComponent<Image>();
+        img.sprite = Resources.Load<Sprite>(content.pathToIcon);
 		img.enabled = true;
     }
 
@@ -51,28 +50,63 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     }
 
     /**
-     * Метод, в котором проверяется, если нажата правая кнопка мыши,
-     * то загружается сцена с вращением выбранного в инвентаре объекта
+     * Метод, в котором осуществляется выделение выбранной ячейки инвентаря, а также проверяется,
+     * если нажата левая кнопка мыши, то выбранный предмет кладётся в руку,
+     * если нажата правая кнопка мыши, то загружается сцена с вращением выбранного объекта, 
      */
     public void OnPointerClick(PointerEventData eventData)
     {
         HighlightACell();
 
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (data == null)
+                return;
+
+            TakeInHands();
+        }
+
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            GameObject droppedObject = Instantiate(Resources.Load<GameObject>(data.pathToPrefab));
-            droppedObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
-            Image img = transform.GetChild(0).GetComponent<Image>();
-            img.enabled = false;
+            if (data == null)
+                return;
+
+            LoadScene();
+        }
+    }
+
+    /**
+     * Отображение/скрытие в руке выбранного в инвентаре объекта
+     */
+    private void TakeInHands()
+    {
+        if (!inventory.inHand || inventory.oldPath != data.pathToPrefab)
+        {
+            Destroy(inventory.oldObject);
+            GameObject obj = Instantiate(Resources.Load<GameObject>(data.pathToPrefab));
+            obj.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            obj.transform.SetPositionAndRotation(inventory.arm.position, inventory.arm.rotation);
+            obj.transform.SetParent(inventory.arm);
+            obj.GetComponent<Rigidbody>().isKinematic = true;
+            obj.GetComponent<Collider>().enabled = false;
+            inventory.oldObject = obj;
+            inventory.oldPath = data.pathToPrefab;
+            inventory.inHand = true;
         }
         else
         {
-
-            if (data == null)
-                return;
-            Buffer.prefPath = data.pathToPrefab;
-            SceneManager.LoadScene(2);
+            Destroy(inventory.oldObject);
+            inventory.inHand = false;
         }
+    }
+
+    /**
+     * Загрузка сцены Rotation
+     */
+    private void LoadScene()
+    {
+        Buffer.prefPath = data.pathToPrefab;
+        SceneManager.LoadScene(2);
     }
 
     /**

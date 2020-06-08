@@ -20,8 +20,22 @@ public class Inventory : MonoBehaviour
     [Header("Прицел")]
     public Image aim;
 
+    [Header("Рука")]
+    public Transform arm;
+
+    [HideInInspector]
+    public GameObject oldObject;
+    [HideInInspector]
+    public string oldPath;
+    [HideInInspector]
+    public bool inHand;
+
     void Start()
     {
+        oldObject = null;
+        oldPath = null;
+        inHand = false;
+
         cells = new List<CurrentItem>();
         inventoryPanel.SetActive(false);
         int count = inventoryPanel.transform.childCount;
@@ -71,7 +85,7 @@ public class Inventory : MonoBehaviour
         counter++;
     }
 
-	private void Save (){
+    private void Save (){
 		foreach (CurrentItem cell in cells) {
 			cell.Save ();
 		}

@@ -210,6 +210,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (4)
@@ -243,10 +248,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -353,6 +354,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (11)
@@ -386,10 +392,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -496,6 +498,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (7)
@@ -530,10 +537,6 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
   m_IsPrefabParent: 0
@@ -542,47 +545,47 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224397947147160778, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
     type: 2}
   m_PrefabInternal: {fileID: 189418408}
---- !u!1001 &331236741
+--- !u!1001 &375374878
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 984751740}
     m_Modifications:
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.81214136
+      value: 1.25
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.78
+      value: -0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.671749
+      value: 1.78
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+    - target: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 5970356ae116e1e488ee3bebeb10195b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &378302831
 GameObject:
@@ -788,6 +791,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (9)
@@ -821,10 +829,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -873,6 +877,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8a0126929d59514da6da61a797a38d7, type: 2}
   m_IsPrefabParent: 0
@@ -973,6 +981,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (5)
@@ -1006,10 +1019,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -1420,6 +1429,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (14)
@@ -1453,10 +1467,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -1540,7 +1550,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.02, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1767127754}
   m_Father: {fileID: 2059392695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1641,6 +1652,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (8)
@@ -1674,10 +1690,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -1822,6 +1834,11 @@ Prefab:
       propertyPath: m_TagString
       value: Icon1
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
   m_IsPrefabParent: 0
@@ -1927,6 +1944,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (12)
@@ -1960,10 +1982,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -2156,6 +2174,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (10)
@@ -2189,10 +2212,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -2299,6 +2318,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (3)
@@ -2332,10 +2356,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -2442,6 +2462,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (6)
@@ -2476,10 +2501,6 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
   m_IsPrefabParent: 0
@@ -2488,6 +2509,36 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224397947147160778, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
     type: 2}
   m_PrefabInternal: {fileID: 1540340162}
+--- !u!1 &1767127753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1006592751490220, guid: 5970356ae116e1e488ee3bebeb10195b,
+    type: 2}
+  m_PrefabInternal: {fileID: 375374878}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1767127754}
+  m_Layer: 0
+  m_Name: Arm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1767127754
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4540423800513270, guid: 5970356ae116e1e488ee3bebeb10195b,
+    type: 2}
+  m_PrefabInternal: {fileID: 375374878}
+  m_GameObject: {fileID: 1767127753}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25, y: -0.6, z: 1.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 984751740}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1795497868
 Prefab:
   m_ObjectHideFlags: 0
@@ -2585,6 +2636,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (13)
@@ -2618,10 +2674,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
@@ -2678,6 +2730,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 378302831}
   aim: {fileID: 782390690}
+  arm: {fileID: 1767127754}
+  oldObject: {fileID: 0}
+  oldPath: 
+  inHand: 0
 --- !u!1001 &1979820805
 Prefab:
   m_ObjectHideFlags: 0
@@ -2775,6 +2831,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 224898826927840162, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
         type: 2}
       propertyPath: m_AnchorMin.y
@@ -2805,17 +2866,54 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114046930867943454, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1988664410
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.81214136
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.671749
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707070121053626, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 21aa07738b88ec943a0b8534eca41de7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2059392692
 GameObject:
@@ -3113,6 +3211,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114853544608092350, guid: fbbc52d3a0efb9b4799a6ca037feafc5,
+        type: 2}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1767127754}
     - target: {fileID: 1583488808745592, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
       propertyPath: m_Name
       value: Cell (2)
@@ -3146,10 +3249,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751547158830914, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}
-      propertyPath: m_TagString
-      value: Icon2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbbc52d3a0efb9b4799a6ca037feafc5, type: 2}

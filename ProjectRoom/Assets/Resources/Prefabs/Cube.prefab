@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 23445613639915276}
   - component: {fileID: 54307193246909012}
   - component: {fileID: 114945108253044888}
-  - component: {fileID: 114585038828913744}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -113,21 +112,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114585038828913744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1188694041248696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0236cb7ed947c024eb9df42ad5631d47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startScale: {x: 1, y: 1, z: 1}
-  arm: {fileID: 4842499266024886, guid: 1d63bdc5292b3eb46ad7a824d062f50f, type: 2}
-  takeAnObject: 111
-  removeObject: 107
 --- !u!114 &114945108253044888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: "\u041A\u0443\u0431"
-  id: 1
   pathToIcon: Icons/hammer-small
   pathToPrefab: Prefabs/Cube
