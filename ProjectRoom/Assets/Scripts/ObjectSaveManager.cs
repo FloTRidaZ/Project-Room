@@ -4,11 +4,19 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+/**
+ * Класс, предназначенный для
+ * сохранения необходимых данных
+ * игрового объекта, имеющий
+ * компонент State
+ * 
+ * @author KSO 17ИТ17
+ */ 
 [System.Serializable]
 public class ObjectSaveManager {
 
 	public SaveData saveData;
-	
+
 	[System.Serializable]
 	public struct Vec3 {
 		public float x, y, z;
@@ -32,6 +40,12 @@ public class ObjectSaveManager {
 		}
 	}
 
+	/**
+	 * Сохраняет данные об объекте,
+	 * имеющий компонент State
+	 * 
+	 * @param obj - игровой объект
+	 */
 	public void Save (GameObject obj){
 		State state = obj.GetComponent<State> ();
 		Vector3 localPos = state.transform.localPosition;
@@ -40,5 +54,5 @@ public class ObjectSaveManager {
 		Vec3 dir = new Vec3 (forward.x, forward.y, forward.z);
 		saveData = new SaveData (pos, dir, state.IsOpen ());
 	}
-		
+
 }

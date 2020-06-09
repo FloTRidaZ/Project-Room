@@ -9,8 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
  * @author KSO 17ИТ17
  */ 
 public class State : MonoBehaviour {
-	ObjectSaveManager manager;
-	string savePath;
+	private string savePath;
 
 	private bool state;
 
@@ -40,16 +39,22 @@ public class State : MonoBehaviour {
 		return state;
 	}
 
+	/**
+	 * Сохраняет данные о текущем объекте
+	 */ 
 	private void Save (){
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream fs = new FileStream (savePath, FileMode.Create);
 
-		manager = new ObjectSaveManager ();
+		ObjectSaveManager manager = new ObjectSaveManager ();
 		manager.Save (gameObject);
 		bf.Serialize (fs, manager);
 		fs.Close ();
 	}
 
+	/**
+	 * Загружает сохраненные данные о текущем объекте
+	 */ 
 	private void Load () {
 		if (!File.Exists (savePath)) {
 			return;
@@ -59,10 +64,10 @@ public class State : MonoBehaviour {
 
 		FileStream fs = new FileStream (savePath, FileMode.Open);
 
-		manager = (ObjectSaveManager) bf.Deserialize (fs);
+		ObjectSaveManager manager = (ObjectSaveManager) bf.Deserialize (fs);
 		fs.Close ();
 
-		restoreData ();
+		RestoreData (manager);
 	}
 
 	void Update () {
@@ -75,7 +80,14 @@ public class State : MonoBehaviour {
 		}
 	}
 
-	private void restoreData (){
+	/**
+	 * Восстанавливает позицию, состояние и направление
+	 * текущего объекта
+	 * 
+	 * @param manager объект, хранящий сохраненные данные о текущем
+	 * объекте
+	 */ 
+	private void RestoreData (ObjectSaveManager manager){
 		float posX = manager.saveData.pos.x;
 		float posY = manager.saveData.pos.y;
 		float posZ = manager.saveData.pos.z;

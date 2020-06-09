@@ -13,7 +13,7 @@ public class AimScript : MonoBehaviour {
 	private const string ANIM_CLOSE_NAME = "close";
 	public Camera cam;
 	private bool isPlaying;
-	Inventory inventory;
+	private Inventory inventory;
 
 	void Awake () {
 		GameObject inventoryObject = GameObject.FindGameObjectWithTag("InventoryManager");
