@@ -8,22 +8,20 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 /**
- * Класс, реализующий работу выбранного объекта в инвентаре
+ * Класс, реализующий работу выбранного в инвентаре объекта
  *
  * @author Сотников Р. 17ит17
  */
 public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public static string currentPath;
-
     [Header("Подсветка")]
     public Sprite cell;
     public Sprite activeCell;
     public Sprite highlightedCell;
     Image imgSprite;
 
-    private GameObject inventoryObject;
-    private Inventory inventory;
+    GameObject inventoryObject;
+    Inventory inventory;
 	public DataHolder data;
 
     string savePath;
@@ -41,6 +39,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 		savePath = Application.persistentDataPath + "/save" + name + ".gamesave";
     }
 
+    /**
+     * Отображение подобранного предмета в инвентаре
+     */
     public void AddItem(Item content)
     {
         data = new DataHolder(content);
@@ -52,7 +53,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     /**
      * Метод, в котором осуществляется выделение выбранной ячейки инвентаря, а также проверяется,
      * если нажата левая кнопка мыши, то выбранный предмет кладётся в руку,
-     * если нажата правая кнопка мыши, то загружается сцена с вращением выбранного объекта
+     * если нажата правая кнопка мыши, то загружается сцена с вращением выбранного предмета
      */
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -63,7 +64,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             if (data == null)
                 return;
 
-            TakeInHands();
+            inventory.TakeInHands(data.pathToPrefab);
         }
 
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -72,31 +73,6 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 return;
 
             LoadScene();
-        }
-    }
-
-    /**
-     * Отображение/скрытие в руке выбранного в инвентаре объекта
-     */
-    private void TakeInHands()
-    {
-        if (!inventory.inHand || inventory.oldPathToPrefab != data.pathToPrefab)
-        {
-            Destroy(inventory.oldObject);
-            GameObject obj = Instantiate(Resources.Load<GameObject>(data.pathToPrefab));
-            obj.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-            obj.transform.SetPositionAndRotation(inventory.arm.position, inventory.arm.rotation);
-            obj.transform.SetParent(inventory.arm);
-            obj.GetComponent<Rigidbody>().isKinematic = true;
-            obj.GetComponent<Collider>().enabled = false;
-            inventory.oldObject = obj;
-            inventory.oldPathToPrefab = data.pathToPrefab;
-            inventory.inHand = true;
-        }
-        else
-        {
-            Destroy(inventory.oldObject);
-            inventory.inHand = false;
         }
     }
 
@@ -161,19 +137,21 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
 	public class DataHolder
     {
-		public string itemName, pathToPrefab, pathToIcon;
+		public string itemName, pathToIcon, pathToPrefab;
 
-		public DataHolder (Item item){
+		public DataHolder(Item item)
+        {
 			itemName = item.itemName;
-			pathToPrefab = item.pathToPrefab;
 			pathToIcon = item.pathToIcon;
-		}
+            pathToPrefab = item.pathToPrefab;
+        }
 
-		public DataHolder (string itemName, string pathToPrefab, string pathToIcon){
+		public DataHolder(string itemName, string pathToIcon, string pathToPrefab)
+        {
 			this.itemName = itemName;
-			this.pathToPrefab = pathToPrefab;
 			this.pathToIcon = pathToIcon;
-		}
+            this.pathToPrefab = pathToPrefab;
+        }
     }
 
     /**
@@ -181,13 +159,12 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     public void Save()
 	{
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = new FileStream(savePath, FileMode.Create);
         manager = new InventorySaveManager();
-		manager.Save (data);
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream fs = new FileStream(savePath, FileMode.Create);
+		manager.Save(data);
         bf.Serialize(fs, manager);
         fs.Close();
-
 	}
 
     /**
@@ -203,9 +180,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         manager = (InventorySaveManager) bf.Deserialize(fs);
         fs.Close();
 		if (!manager.isEmpty) {
-			RestoreData ();
+			RestoreData();
 		} else {
-			ClearData ();
+			ClearData();
 		}
     }
 
@@ -214,9 +191,9 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
      */
     private void RestoreData()
     {
-		data = new DataHolder (manager.saveData.itemName, manager.saveData.pathToPrefab, manager.saveData.pathToIcon);
-		Image img = transform.GetChild (0).GetComponent<Image>();
-		img.sprite = Resources.Load<Sprite> (data.pathToIcon);
+		data = new DataHolder(manager.saveData.itemName, manager.saveData.pathToIcon, manager.saveData.pathToPrefab);
+		Image img = transform.GetChild(0).GetComponent<Image>();
+		img.sprite = Resources.Load<Sprite>(data.pathToIcon);
 		img.enabled = true;
     }
 
@@ -226,7 +203,7 @@ public class CurrentItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 	private void ClearData ()
     {
 		data = null;
-		Image img = transform.GetChild (0).GetComponent<Image>();
+		Image img = transform.GetChild(0).GetComponent<Image>();
 		img.enabled = false;
 	}
 }

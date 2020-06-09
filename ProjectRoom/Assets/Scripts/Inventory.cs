@@ -12,8 +12,8 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public GameObject inventoryPanel;
-    private List<CurrentItem> cells;
-    private int counter = 0;
+    List<CurrentItem> cells;
+    int counter = 0;
 
     [Header("Прицел")]
     public Image aim;
@@ -21,35 +21,32 @@ public class Inventory : MonoBehaviour
     [Header("Рука")]
     public Transform arm;
 
-    [HideInInspector]
-    public GameObject oldObject;
-    [HideInInspector]
-    public string oldPathToPrefab;
-    [HideInInspector]
-    public bool inHand;
+    GameObject oldObject;
+    string oldPathToPrefab;
+    bool inHand;
 
     void Start()
     {
-        oldObject = null;
-        oldPathToPrefab = null;
         inHand = false;
 
         inventoryPanel.SetActive(false);
         cells = new List<CurrentItem>();
         for (int i = 0; i < inventoryPanel.transform.childCount; i++)
         {
-            GameObject currentObj = inventoryPanel.transform.GetChild(i).gameObject;
-            cells.Add(currentObj.GetComponent<CurrentItem>());
+            cells.Add(inventoryPanel.transform.GetChild(i).gameObject.GetComponent<CurrentItem>());
         }
     }
 
     void Update()
     {
         ToggleInventory();
-		if (Input.GetKeyDown (KeyCode.F5)){
+
+		if (Input.GetKeyDown (KeyCode.F5))
+        {
 			Save();
 		}
-		if (Input.GetKeyDown (KeyCode.F9)){
+		if (Input.GetKeyDown (KeyCode.F9))
+        {
 			Load();
 		}
     }
@@ -81,11 +78,37 @@ public class Inventory : MonoBehaviour
     }
 
     /**
+     * Отображение/скрытие в руке выбранного в инвентаре объекта
+     */
+    public void TakeInHands(string pathToPrefab)
+    {
+        if (!inHand || oldPathToPrefab != pathToPrefab)
+        {
+            Destroy(oldObject);
+            GameObject obj = Instantiate(Resources.Load<GameObject>(pathToPrefab));
+            obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            obj.transform.SetPositionAndRotation(arm.position, arm.rotation);
+            obj.transform.SetParent(arm);
+            obj.GetComponent<Rigidbody>().isKinematic = true;
+            obj.GetComponent<Collider>().enabled = false;
+            oldObject = obj;
+            oldPathToPrefab = pathToPrefab;
+            inHand = true;
+        }
+        else
+        {
+            Destroy(oldObject);
+            inHand = false;
+        }
+    }
+
+    /**
      * Метод для сохранения данных о состоянии инвентаря
      */
     private void Save()
     {
-		foreach (CurrentItem cell in cells) {
+		foreach (CurrentItem cell in cells)
+        {
 			cell.Save ();
 		}
 	}
@@ -95,7 +118,8 @@ public class Inventory : MonoBehaviour
      */
     private void Load()
     {
-		foreach (CurrentItem cell in cells) {
+		foreach (CurrentItem cell in cells)
+        {
 			cell.Load ();
 		}
 	}

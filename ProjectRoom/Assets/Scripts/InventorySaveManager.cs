@@ -23,7 +23,8 @@ public class InventorySaveManager
 
 	public void Save(CurrentItem.DataHolder data)
     {
-		if (data == null) {
+		if (data == null)
+        {
 			isEmpty = true;
 			return;
 		}
