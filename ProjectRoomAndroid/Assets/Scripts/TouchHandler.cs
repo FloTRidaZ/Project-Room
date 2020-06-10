@@ -33,10 +33,11 @@ public class TouchHandler : MonoBehaviour, IPointerDownHandler,  IDragHandler{
 	}
 
 	public void OnDrag(PointerEventData eventData){
-		deltaY += eventData.delta.y;
-		deltaX += eventData.delta.x;
-		Quaternion rotationY = Quaternion.AngleAxis (deltaX/4f, Vector3.up);
-		Quaternion rotationX = Quaternion.AngleAxis (-deltaY/4f, Vector3.right);
+		deltaY += eventData.delta.y /4f;
+		deltaX += eventData.delta.x /4f;
+		deltaY = Mathf.Clamp (deltaY, -60, 60);
+		Quaternion rotationY = Quaternion.AngleAxis (deltaX, Vector3.up);
+		Quaternion rotationX = Quaternion.AngleAxis (-deltaY, Vector3.right);
 
 		player.transform.rotation = origin * rotationY;
 		cam.transform.rotation = origin * player.transform.rotation * rotationX;
